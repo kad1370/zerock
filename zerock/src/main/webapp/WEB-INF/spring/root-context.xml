@@ -8,9 +8,15 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
+
+	<!-- 스캔할 패키지 설정 -->	
+	<context:component-scan base-package="org.zerock.service"/>	
+	
+	<!-- Mybatis가 동작 시 스캔 할 mappere package 설정 -->
+	<mybatis-spring:scan base-package="org.zerock.mapper"/>	
+
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
-		<!-- <property name="
-" value="oracle.jdbc.driver.OracleDriver"></property>--> 
+		<!-- <property name="" value="oracle.jdbc.driver.OracleDriver"></property>--> 
 		<!-- <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:XE"></property> -->
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
 		<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:orcl"></property>
@@ -25,8 +31,5 @@
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
-	</bean>	
-	
-	<!-- Mybatis가 동작 시 스캔 할 mappere package 설정 -->
-	<mybatis-spring:scan base-package="org.zerock.mapper"/>		
+	</bean>		
 </beans>
