@@ -13,7 +13,7 @@
 		insert into tbl_board
 			(bno, title, content, writer)
 		values 
-			(seq_board.nextval, #{title}, #{content}, #{writter})
+			(seq_board.nextval, #{title}, #{content}, #{writer})
 	</insert>
 	
 	<insert id="insertSelectKey">
@@ -24,7 +24,7 @@
 		insert into tbl_board
 			(bno, title, content, writer)
 		values 
-			(#{bno}, #{title}, #{content}, #{writter})
+			(#{bno}, #{title}, #{content}, #{writer})
 	</insert>
 	
 	<select id="read" resultType="org.zerock.domain.BoardVO">
@@ -39,7 +39,7 @@
 		update tbl_board 
 		set  title   = #{title}
 			,content = #{content}
-			,writer  = #{writter}
+			,writer  = #{writer}
 			,updateDate = sysdate
 		where bno = #{bno}
 	</update>

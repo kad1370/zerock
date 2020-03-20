@@ -22,16 +22,22 @@ public class BoardController {
 	// @Setter(onMethod_ = @Autowired)
 	private BoardService boardService;
 	
-	@GetMapping(value="list/")
+	@GetMapping(value="/list")
 	public void list(Model model) {
-		log.info("list");
+		log.info("================= list ======================");
 		model.addAttribute("list", boardService.getList());	
 	}
 	
-	@PostMapping(value="regist/")
-	public String regist(BoardVO board, RedirectAttributes rttr) {
-		
-		log.info("regist: " + board);
+	@GetMapping(value="register")
+	public void register() {
+		log.info("================= get Register =================");
+	}
+	
+	
+	@PostMapping(value="register")
+	public String register(BoardVO board, RedirectAttributes rttr) {
+		log.info("================= post Register =================");
+		log.info("register: " + board);
 		
 		boardService.register(board);
 		

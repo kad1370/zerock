@@ -58,7 +58,7 @@ public class BoardControllerTests {
 				
 				.param("title", "테스트 제목")
 				.param("content", "테스트 내용")
-				.param("writter", "user00")
+				.param("writer", "user00")
 			).andReturn().getModelAndView().getViewName();
 		
 		log.info(resultPage);
@@ -82,7 +82,7 @@ public class BoardControllerTests {
 
 				.param("title", "테스트 제목")
 				.param("content", "테스트 내용")
-				.param("writter", "edit00")
+				.param("writer", "edit00")
 				.param("bno", "24")
 			).andReturn().getModelAndView().getViewName();
 		
