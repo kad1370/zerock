@@ -41,23 +41,24 @@ public class BoardController {
 		
 		boardService.register(board);
 		
-		// 등록 작업이 끝난 후 다시 목록 화면으로 이동하기 위함
+		// addFlashAttribute : 보관 된 데이터는 단 한번만 사용할 수 있게 보관한다.
 		rttr.addFlashAttribute("result", board.getBno());
-		
+		// 등록 작업이 끝난 후 다시 목록 화면으로 이동하기 위함
 		return "redirect:/board/list";
 		
 		//  model.addAttribute("regist", boardService.register(board));
 	}
 	
-	@GetMapping(value="get/")
+	// 상세조회 및 수정
+	@GetMapping({"get","modify"})
 	public void get(@RequestParam("bno") Long bno, Model model) {
 		log.info("-------- get------------");
 		model.addAttribute("board", boardService.get(bno));
-		
 	}
 	
-	@PostMapping(value="modify/")
+	@PostMapping(value="modify")
 	public String modify(BoardVO board, RedirectAttributes rttr) {
+		log.info("-------- post Modify------------");
 		
 		if(boardService.modify(board)) {
 			rttr.addFlashAttribute("result", "success");
@@ -67,8 +68,9 @@ public class BoardController {
 		
 	}
 	
-	@PostMapping(value="remove/")
+	@PostMapping(value="remove")
 	public String remove(@RequestParam("bno") Long bno, RedirectAttributes rttr) {
+		log.info("-------- post remove------------");
 		
 		if(boardService.remove(bno)) {
 			rttr.addFlashAttribute("result", "success");
